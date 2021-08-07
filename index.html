@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+  
+  <title>Frontend Mentor | Tip calculator app</title>
+
+  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+  <link rel="stylesheet" href="style/style.css">
+</head>
+<body>
+
+  <div class="wrapper">
+    <img class="logo" src="images/logo.svg" alt="SPLITTER">
+    <div class="container">
+      <form id="form">
+        <div class="form-group">
+          <div class="label-group">
+            <label for="bill" class="form-label">Bill</label>
+            <label class="form-label alert" id="bill-alert"></label>
+          </div>
+          <div class="input-container">
+            <input type="number" name="bill" id="bill" placeholder="0">
+            <img class="icon" src="images/icon-dollar.svg" alt="$">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="tips" class="form-label">Select Tip %</label>
+          <div class="tips-container">
+            <div class="tips-group">
+              <input type="checkbox" id="five" value="5" onclick="onlyOne(this)">
+              <label for="five" class="btn btn-tip">5%</label>
+            </div>
+  
+            <div class="tips-group">
+              <input type="checkbox" id="ten" value="10" onclick="onlyOne(this)">
+              <label for="ten" class="btn btn-tip">10%</label>
+            </div>
+  
+            <div class="tips-group">
+              <input type="checkbox" id="fifteen" value="15" onclick="onlyOne(this)">
+              <label for="fifteen" class="btn btn-tip">15%</label>
+            </div>
+  
+            <div class="tips-group">
+              <input type="checkbox" id="twenty-five" value="25" onclick="onlyOne(this)">
+              <label for="twenty-five" class="btn btn-tip">20%</label>
+            </div>
+  
+            <div class="tips-group">              
+              <input type="checkbox" id="fifty" value="50" onclick="onlyOne(this)">
+              <label for="fifty" class="btn btn-tip">50%</label>
+            </div>
+  
+            <input type="number" class="btn" id="custom-tip" placeholder="Custom" onclick="onlyOne(this)">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="label-group">            
+            <label for="people" class="form-label">Number of People</label>
+            <label class="form-label alert" id="people-alert"></label>
+          </div>
+          <div class="input-container">            
+            <input type="number" name="people" id="people" placeholder="0">
+            <img class="icon" src="images/icon-person.svg" alt="">
+          </div>
+        </div>
+      </form>
+
+      <div class="result-container">
+        <div class="result-group">
+          <p>Tip Amount <br><span class="person">/ person</span></p>
+          <p class="money" id="tip-amount">$0.00</p>
+        </div>
+
+        <div class="result-group">
+          <p>Total <br><span class="person">/ person</span></p>
+          <p class="money" id="total-bill">$0.00</p>
+        </div>
+
+        <button type="button" id="btn-reset" disabled>RESET</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="attribution">
+    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
+    Coded by <a href="https://github.com/mahesa10" target="_blank">Pandu Mahesa</a>.
+  </div>
+  <script src="script/app.js"></script>
+</body>
+</html>
