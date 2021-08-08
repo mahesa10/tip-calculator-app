@@ -1,20 +1,11 @@
 const bill = document.getElementById('bill')
 const customTip = document.getElementById('custom-tip')
 const people = document.getElementById('people')
-const tips = document.querySelectorAll('input[type=checkbox]');
+const tips = document.querySelectorAll('input[type=radio]');
 const tipAmountElement = document.querySelector('#tip-amount');
 const totalBillElement = document.querySelector('#total-bill');
 const resetButton = document.querySelector('#btn-reset');
 const defaultMoney = '$0.00'
-
-function onlyOne(tip) {
-    tips.forEach(item => {
-        if (item !== tip) {
-            item.checked = false;
-            customTip.value = "";
-        }
-    })
-}
 
 function calculateTip() {
     let tipValue = customTip.value;
@@ -29,7 +20,8 @@ function calculateTip() {
         total = (bill.value / people.value) + tipAmount;
     }
 
-    if(people.value != 0) {
+    let conditions = [bill.value, tipAmount, people.value]
+    if(conditions.every(item => item > 0)) {
         tipAmountElement.innerHTML = `$${tipAmount.toFixed(2)}`;
         totalBillElement.innerHTML = `$${total.toFixed(2)}`;
         resetButton.disabled = false;
@@ -37,6 +29,18 @@ function calculateTip() {
         tipAmountElement.innerHTML = defaultMoney;
         totalBillElement.innerHTML = defaultMoney;
     }
+}
+
+function uncheckTip() {
+    tips.forEach(item => {
+        if (item.checked) {
+            item.checked = false;
+        }
+    })
+}
+
+function deleteCustomTip() {
+    customTip.value = '';
 }
 
 function resetCalc() {
@@ -79,6 +83,11 @@ function zeroAlert() {
     }
 }
 
-resetButton.addEventListener('click', resetCalc)
-window.addEventListener('keyup', zeroAlert)
-window.addEventListener('keyup', calculateTip)
+tips.forEach(item => {
+    item.addEventListener('click', deleteCustomTip);
+})
+customTip.addEventListener('click', uncheckTip);
+resetButton.addEventListener('click', resetCalc);
+window.addEventListener('keyup', zeroAlert);
+window.addEventListener('keyup', calculateTip);
+window.addEventListener('change', calculateTip);
